@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For My Best Friend 🫂</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      overflow: hidden;
+      font-family: 'Poppins', sans-serif;
+      color: #24121d;
+      background:
+        radial-gradient(circle at 15% 15%, rgba(255,255,255,.75), transparent 25%),
+        radial-gradient(circle at 85% 20%, rgba(255,180,210,.7), transparent 28%),
+        linear-gradient(135deg, #ffd9e7, #f7d9ff 48%, #d9d7ff);
+    }
+
+    .font-love { font-family: 'Pacifico', cursive; }
+
+    .heart, .sparkle {
+      position: fixed;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .heart {
+      bottom: -40px;
+      animation: floatHeart linear infinite;
+      opacity: 0;
+    }
+
+    @keyframes floatHeart {
+      0% { transform: translateY(0) rotate(0) scale(1); opacity: 0; }
+      15% { opacity: .9; }
+      100% { transform: translateY(-115vh) rotate(360deg) scale(1.6); opacity: 0; }
+    }
+
+    .sparkle {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: white;
+      box-shadow: 0 0 15px white;
+      animation: sparkle 2s infinite ease-in-out;
+    }
+
+    @keyframes sparkle {
+      0%,100% { transform: scale(0); opacity: 0; }
+      50% { transform: scale(1.3); opacity: 1; }
+    }
+
+    .balloon {
+      position: fixed;
+      width: 55px;
+      height: 72px;
+      border-radius: 50% 50% 45% 45%;
+      opacity: .65;
+      animation: balloonFloat 4s ease-in-out infinite;
+      z-index: 0;
+    }
+    .balloon::after {
+      content: '';
+      position: absolute;
+      width: 2px;
+      height: 90px;
+      background: rgba(80,40,70,.25);
+      left: 50%;
+      top: 70px;
+    }
+    @keyframes balloonFloat {
+      0%,100% { transform: translateY(0) rotate(-3deg); }
+      50% { transform: translateY(-25px) rotate(4deg); }
+    }
+
+    main {
+      position: relative;
+      z-index: 10;
+      width: min(900px, calc(100% - 28px));
+      margin: auto;
+    }
+
+    .glass {
+      min-height: 610px;
+      padding: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 34px;
+      background: rgba(255,255,255,.42);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(255,255,255,.65);
+      box-shadow: 0 25px 70px rgba(91,35,87,.22);
+    }
+
+    .step {
+      display: none;
+      width: 100%;
+      animation: popIn .7s ease forwards;
+    }
+    .step.active { display: block; }
+
+    @keyframes popIn {
+      from { opacity: 0; transform: translateY(28px) scale(.97); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    h1,h2 { margin-top: 0; }
+    .title {
+      font-size: clamp(3rem, 8vw, 6rem);
+      line-height: 1.05;
+      margin-bottom: 22px;
+    }
+    .subtitle {
+      max-width: 650px;
+      margin: 0 auto 30px;
+      font-size: 1.08rem;
+      line-height: 1.8;
+    }
+
+    button {
+      border: 0;
+      cursor: pointer;
+      font: inherit;
+    }
+
+    .btn {
+      padding: 14px 25px;
+      border-radius: 999px;
+      background: #fff;
+      color: #b21f62;
+      font-weight: 700;
+      box-shadow: 0 12px 28px rgba(119,34,89,.18);
+      transition: .2s;
+    }
+    .btn:hover { transform: translateY(-2px) scale(1.03); }
+    .btn:active { transform: scale(.97); }
+
+    .memory-card, .letter {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 25px;
+      border-radius: 25px;
+      background: rgba(255,255,255,.48);
+      border: 1px solid rgba(255,255,255,.7);
+      box-shadow: 0 12px 35px rgba(91,35,87,.10);
+    }
+
+    .memory-card {
+      min-height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      line-height: 1.8;
+    }
+
+    .tiny {
+      font-size: .88rem;
+      opacity: .72;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: .18em;
+    }
+
+    .joke {
+      font-size: 1.08rem;
+      line-height: 1.9;
+      margin: 14px 0;
+    }
+
+    .highlight {
+      color: #a8175a;
+      font-weight: 700;
+    }
+
+    .letter {
+      text-align: left;
+      max-height: 390px;
+      overflow-y: auto;
+      line-height: 1.9;
+      font-size: 1rem;
+    }
+
+    .letter p { margin: 0 0 16px; }
+
+    .secret {
+      margin-top: 22px;
+      font-size: 1.4rem;
+      font-weight: 700;
+    }
+
+    .nazar {
+      font-size: 4rem;
+      display: inline-block;
+      animation: pulse 1.5s infinite;
+      cursor: pointer;
+    }
+    @keyframes pulse {
+      50% { transform: scale(1.12) rotate(-5deg); }
+    }
+
+    .progress {
+      display: flex;
+      justify-content: center;
+      gap: 7px;
+      margin-top: 25px;
+    }
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(120,50,90,.25);
+    }
+    .dot.active { background: #b21f62; transform: scale(1.3); }
+
+    .confetti {
+      position: fixed;
+      top: -20px;
+      width: 9px;
+      height: 14px;
+      z-index: 50;
+      animation: fall 3.5s linear forwards;
+    }
+    @keyframes fall {
+      to { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+    }
+
+    @media (max-width: 600px) {
+      .glass { min-height: 590px; padding: 22px; }
+      .letter { max-height: 350px; }
+      .memory-card { font-size: 1.05rem; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="balloon" style="left:7%;top:12%;background:#ff8fb8;"></div>
+  <div class="balloon" style="right:8%;top:18%;background:#b99cff;animation-delay:1s;"></div>
+  <div class="balloon" style="left:12%;bottom:12%;background:#ffd86e;animation-delay:2s;"></div>
+  <div class="balloon" style="right:14%;bottom:16%;background:#ff9f9f;animation-delay:.5s;"></div>
+
+  <main>
+    <div class="glass">
+
+      <!-- 0 -->
+      <section class="step active" data-step="0">
+        <div class="tiny">For someone very special 🫂</div>
+        <h1 class="font-love title">Hey Bestie 🤍</h1>
+        <p class="subtitle">
+          I don't really say all my thoughts about you out loud...
+          so I thought maybe I should put them somewhere you can't interrupt me. 😂
+        </p>
+        <button class="btn" onclick="nextStep()">Okay, read it 😭</button>
+      </section>
+
+      <!-- 1 -->
+      <section class="step" data-step="1">
+        <div class="tiny">13 years of us</div>
+        <h2 class="font-love" style="font-size:clamp(2.5rem,6vw,4.5rem);">Can you believe it?</h2>
+        <div class="memory-card">
+          <div>
+            <p>
+              We've spent <span class="highlight">13 years</span> of our lives together.
+              13 years of growing up, changing, laughing, fighting, annoying each other
+              and somehow still choosing this friendship every time. 🥹
+            </p>
+            <p>
+              Honestly... 13 years wasn't enough.
+            </p>
+          </div>
+        </div>
+        <br>
+        <button class="btn" onclick="nextStep()">Keep going →</button>
+      </section>
+
+      <!-- 2 -->
+      <section class="step" data-step="2">
+        <div class="tiny">Things I don't say enough</div>
+        <h2 class="font-love" style="font-size:clamp(2.5rem,6vw,4.5rem);">You are my comfort zone 🫂</h2>
+        <div class="memory-card">
+          <div>
+            <p>
+              You hold such a special part of my heart.
+              You're one of those people around whom I don't have to pretend to be
+              anything else.
+            </p>
+            <p>
+              I can be stupid, dramatic, quiet, annoying, emotional...
+              basically the full package. 😭😂
+            </p>
+            <p>
+              And somehow, you're still here.
+            </p>
+          </div>
+        </div>
+        <br>
+        <button class="btn" onclick="nextStep()">One more thing →</button>
+      </section>
+
+      <!-- 3 -->
+      <section class="step" data-step="3">
+        <div class="tiny">Our very serious friendship history 😂</div>
+        <h2 class="font-love" style="font-size:clamp(2.3rem,5vw,4rem);">Things only we understand</h2>
+
+        <div class="memory-card" id="insideJoke">
+          <div>
+            <p class="joke">“Uparla dekhe h bus ki kisht m ko kad lega.” 😭😂</p>
+            <p class="joke">“Jo anpadh hove h, vo apni addat t anpadh hove h.” 🤡</p>
+            <p class="joke">And of course... <span class="highlight">Nazarbattu 🫂🧿</span></p>
+          </div>
+        </div>
+
+        <p style="margin-top:18px;opacity:.75;">No context. No explanation. Just us. 😂</p>
+        <button class="btn" onclick="nextStep()">There is more 😭</button>
+      </section>
+
+      <!-- 4 -->
+      <section class="step" data-step="4">
+        <div class="tiny">A very important thank you</div>
+        <h2 class="font-love" style="font-size:clamp(2.3rem,5vw,4rem);">Thank you, genius. 😂</h2>
+        <div class="memory-card">
+          <div>
+            <p>
+              Thank you for <span class="highlight">har baar mujhe maths ka kaam bhejne ke liye</span>. 😭😂
+            </p>
+            <p>
+              Teri wajah se maths se mera rishta bana raha...
+              warna main toh kab ki haar maan chuki hoti. 🤡
+            </p>
+            <p>
+              Sach bolun, tera kaam bhejna bhi friendship ka ek important contribution hai.
+              Very generous of you. 😌😂
+            </p>
+          </div>
+        </div>
+        <br>
+        <button class="btn" onclick="nextStep()">Okay, now serious... 🤍</button>
+      </section>
+
+      <!-- 5 -->
+      <section class="step" data-step="5">
+        <div class="tiny">The part I actually mean</div>
+        <h2 class="font-love" style="font-size:clamp(2.3rem,5vw,4rem);">About our future</h2>
+        <div class="memory-card">
+          <div>
+            <p>
+              I really wish we could spend our college life together too.
+            </p>
+            <p>
+              I know life is going to change a lot. We'll meet new people,
+              get busy, have new experiences and probably become even more annoying adults. 😂
+            </p>
+            <p>
+              But I hope college doesn't make us strangers.
+            </p>
+          </div>
+        </div>
+        <br>
+        <button class="btn" onclick="nextStep()">One last thing →</button>
+      </section>
+
+      <!-- 6 -->
+      <section class="step" data-step="6">
+        <div class="tiny">My little apology</div>
+        <h2 class="font-love" style="font-size:clamp(2.3rem,5vw,4rem);">Sorry, okay? 🥹</h2>
+        <div class="memory-card">
+          <div>
+            <p>
+              Sorry if I annoy you many times.
+              Okay... <span class="highlight">many, many times.</span> 😭
+            </p>
+            <p>
+              Sorry for the unnecessary drama, random messages,
+              stupid arguments and all the times I've tested your patience.
+            </p>
+            <p>
+              But annoying you is unfortunately one of my love languages. 😂🫂
+            </p>
+          </div>
+        </div>
+        <br>
+        <button class="btn" onclick="nextStep()">Now click this 🧿</button>
+      </section>
+
+      <!-- 7 -->
+      <section class="step" data-step="7">
+        <div class="tiny">For my person</div>
+        <h2 class="font-love" style="font-size:clamp(2.5rem,6vw,4.5rem);">Nazarbattu</h2>
+        <div class="nazar" onclick="nazarReveal()">🧿</div>
+        <p class="subtitle" id="nazarText">
+          Click it. You know what this means. 🫂
+        </p>
+      </section>
+
+      <!-- 8 -->
+      <section class="step" data-step="8">
+        <div class="tiny">The thing I really want you to know</div>
+        <h2 class="font-love" style="font-size:clamp(2.3rem,5vw,4rem);">Just don't leave, okay? 🤍</h2>
+
+        <div class="letter">
+          <p>There are so many things I never really say to you.</p>
+
+          <p>
+            Maybe because I don't always know how to express my feelings,
+            or maybe because after 13 years, it feels like you should already know.
+          </p>
+
+          <p>
+            But you really do hold a very special part of my heart.
+            You're my comfort zone, my safe person, and one of the few people
+            with whom I can just be myself.
+          </p>
+
+          <p>
+            We've grown up together. We've seen each other's phases,
+            stupid decisions, fights, jokes, drama and all the nonsense in between.
+            And somehow, after all these years, we're still here.
+          </p>
+
+          <p>
+            I genuinely wish we could spend our college life together too.
+            I know life won't stay the same forever, and maybe things will change,
+            but I hope our friendship doesn't become one of those things we only remember.
+          </p>
+
+          <p>
+            I'm sorry if I annoy you a lot.
+            I know I can be irritating sometimes... okay, sometimes is an understatement. 😂
+            But even when I irritate you, I never want to lose you.
+          </p>
+
+          <p>
+            And all our stupid inside jokes, random conversations,
+            maths ka kaam, “Nazarbattu,” and those completely senseless lines
+            are memories I'll always keep close.
+          </p>
+
+          <p>
+            I don't know where life will take us,
+            but I really hope that wherever we end up,
+            we'll still have that same stupid friendship.
+          </p>
+
+          <p>
+            <strong>
+              13 years down, and I still want many more years of this friendship.
+              I never wanna lose you. 🫂🤍
+            </strong>
+          </p>
+        </div>
+
+        <div class="secret">
+          You're stuck with me. Unfortunately. 😌😂🫂
+        </div>
+
+        <br>
+        <button class="btn" onclick="restart()">Read it again ↻</button>
+      </section>
+
+    </div>
+
+    <div class="progress" id="progress"></div>
+  </main>
+
+  <script>
+    let current = 0;
+    const steps = document.querySelectorAll('.step');
+    const progress = document.getElementById('progress');
+
+    function updateProgress() {
+      progress.innerHTML = '';
+      steps.forEach((_, i) => {
+        const dot = document.createElement('div');
+        dot.className = 'dot' + (i === current ? ' active' : '');
+        progress.appendChild(dot);
+      });
+    }
+
+    function showStep(index) {
+      if (index < 0 || index >= steps.length) return;
+      steps.forEach(s => s.classList.remove('active'));
+      steps[index].classList.add('active');
+      current = index;
+      updateProgress();
+      if (index === steps.length - 1) launchConfetti(90);
+    }
+
+    function nextStep() {
+      showStep(current + 1);
+    }
+
+    function nazarReveal() {
+      const text = document.getElementById('nazarText');
+      text.innerHTML = `
+        <strong>Nazarbattu 🫂🧿</strong><br><br>
+        13 saal se meri life ka itna important part hai tu,
+        toh buri nazar se bachana toh banta hai. 🤍<br><br>
+        College alag ho, raaste alag ho,
+        life kitni bhi change ho...
+        <strong>meri best friend wali jagah pe koi replacement nahi milega.</strong>
+      `;
+      launchConfetti(35);
+      setTimeout(nextStep, 2800);
+    }
+
+    function launchConfetti(amount = 70) {
+      const colors = ['#ff5d9e','#ffd86e','#9d7cff','#ffffff','#ff8f8f'];
+      for (let i = 0; i < amount; i++) {
+        const c = document.createElement('div');
+        c.className = 'confetti';
+        c.style.left = Math.random() * 100 + 'vw';
+        c.style.background = colors[Math.floor(Math.random() * colors.length)];
+        c.style.animationDelay = Math.random() * .8 + 's';
+        c.style.animationDuration = (2 + Math.random() * 2) + 's';
+        document.body.appendChild(c);
+        setTimeout(() => c.remove(), 4500);
+      }
+    }
+
+    function restart() {
+      showStep(0);
+    }
+
+    function createFloatingHearts() {
+      setInterval(() => {
+        const heart = document.createElement('div');
+        heart.className = 'heart';
+        heart.textContent = ['🤍','🫂','💗','✨','🧿'][Math.floor(Math.random()*5)];
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.fontSize = (17 + Math.random() * 25) + 'px';
+        heart.style.animationDuration = (4 + Math.random() * 4) + 's';
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 8000);
+      }, 450);
+    }
+
+    function createSparkles() {
+      for (let i = 0; i < 30; i++) {
+        const s = document.createElement('div');
+        s.className = 'sparkle';
+        s.style.left = Math.random() * 100 + 'vw';
+        s.style.top = Math.random() * 100 + 'vh';
+        s.style.animationDelay = Math.random() * 3 + 's';
+        document.body.appendChild(s);
+      }
+    }
+
+    createFloatingHearts();
+    createSparkles();
+    updateProgress();
+  </script>
+</body>
+</html>
